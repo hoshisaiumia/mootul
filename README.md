@@ -2,8 +2,6 @@
 
 > An **open-source**, **private** messaging app, built to be easy to run and easy to audit.
 
-[Português](README.pt-BR.md) · **English**
-
 ![Status](https://img.shields.io/badge/status-in%20development-yellow)
 ![Next.js](https://img.shields.io/badge/Next.js-App%20Router-black)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791)
