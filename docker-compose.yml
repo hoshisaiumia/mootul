@@ -2,7 +2,7 @@ services:
   db:
     image: postgres:16-alpine
     restart: unless-stopped
-    env_file: ./env/db.env
+    env_file: ./env/postgres.env
     ports:
       - "5432:5432"
     volumes:
@@ -15,6 +15,7 @@ services:
 
   web:
     build: .
+    command: sh -c "npx prisma generate && npx prisma migrate deploy && npm run dev"
     ports:
       - "3000:3000"
     env_file: ./env/web.env

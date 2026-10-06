@@ -31,8 +31,11 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-db.env
+.env
+postgres.env
+postgres.local.env
 web.env
+web.local.env
 
 # vercel
 .vercel
@@ -40,3 +43,5 @@ web.env
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/lib/generated/

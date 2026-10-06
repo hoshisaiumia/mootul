@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username String @unique
+  email String @unique
+  passwordHash String @map("password_hash")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  memberships ChatMember[]
+  messages Message[]
+
+  @@map("users")
+}
+
+model Chat {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  members ChatMember[]
+  messages Message[]
+
+  @@map("chats")
+}
+
+model ChatMember {
+  chatId String @map("chat_id") @db.Uuid
+  userId String @map("user_id") @db.Uuid
+  chat Chat @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([chatId, userId])
+  @@map("chat_members")
+}
+
+model Message {
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  chatId String @map("chat_id") @db.Uuid
+  senderId String @map("sender_id") @db.Uuid
+  content String
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  chat Chat @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  sender User @relation(fields: [senderId], references: [id])
+
+  @@index([chatId, createdAt(sort: Desc)])
+  @@map("messages")
+}
