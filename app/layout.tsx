@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Mootul",
-  description: "A simple and private messaging app. Not build by a huge company that steals your data.",
+  description:
+    "A simple and private messaging app. Not build by a huge company that steals your data.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -23,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en-US"
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
-      <body className="h-dvh flex flex-col">{children}</body>
+      <body className="h-dvh flex flex-col bg-zinc-950">{children}</body>
     </html>
   );
 }
