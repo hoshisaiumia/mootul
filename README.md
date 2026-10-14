@@ -22,7 +22,7 @@ Mootul is a messaging app with private conversations (DMs), a familiar chat-styl
 
 ## Features
 
-- [ ] Sign up and sign in
+- [x] Sign up and sign in
 - [ ] Private conversations (DMs)
 - [ ] Real-time messaging
 - [ ] Conversation history
