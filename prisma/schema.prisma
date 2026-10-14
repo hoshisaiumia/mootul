@@ -18,6 +18,7 @@ model User {
   email String @unique
   passwordHash String @map("password_hash")
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  avatarUrl String?
 
   memberships ChatMember[]
   messages Message[]
